@@ -34,6 +34,12 @@ public class RentACatImpl implements RentACat {
 
 	public boolean rentCat(int id) {
 		// TODO
+		for (int i = 0; i < cats.size(); i++) {
+			if (cats.get(i).getId() == id && cats.get(i).getRented() == false) {
+				cats.get(i).rentCat();
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -47,9 +53,14 @@ public class RentACatImpl implements RentACat {
 	 * @return "\n"-delimited list of rentable cats
 	 */
 
-	public String listCats() {
-		// TODO
-		return "WRITE CODE FOR THIS";
+	public String listCats(){
+		String ret = "";
+		for(Cat c : cats) {
+			if(c.getRented() == false) {
+				ret += c.toString() + "\n";
+			}
+		}
+		return ret;
 	}
 
 	/**
